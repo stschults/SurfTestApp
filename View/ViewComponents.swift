@@ -83,14 +83,16 @@ class Button {
     let buttonWidth: Int
     let buttonColor: UIColor
     let buttonTintColor: UIColor
+    let cornerRadius: CGFloat
     
     
-    init(buttonText: String, buttonHeight: Int, buttonWidth: Int, buttonColor: UIColor, bittonTintColor: UIColor) {
+    init(buttonText: String, buttonHeight: Int, buttonWidth: Int, buttonColor: UIColor, bittonTintColor: UIColor, cornerRadius: CGFloat) {
         self.buttonText = buttonText
         self.buttonHeight = buttonHeight
         self.buttonWidth = buttonWidth
         self.buttonColor = buttonColor
         self.buttonTintColor = bittonTintColor
+        self.cornerRadius = cornerRadius
     }
     
     func getButton() -> UIButton {
@@ -99,9 +101,47 @@ class Button {
             button.backgroundColor = buttonColor
             button.tintColor = buttonTintColor
             button.setTitle(buttonText, for: .normal)
+            button.titleLabel?.font = .systemFont(ofSize: 16)
+            button.layer.cornerRadius = cornerRadius
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()
         return button
     }
 }
+
+class Chips {
+    
+    let chipsText: String
+    let fontColor: UIColor
+    let fontStyle: UIFont
+    let backgroundColor: UIColor
+    let isSelected: Bool
+    
+    init(chipsText: String, fontColor: UIColor, fontStyle: UIFont, backgroundColor: UIColor, isSelected: Bool) {
+        self.chipsText = chipsText
+        self.fontColor = fontColor
+        self.fontStyle = fontStyle
+        self.backgroundColor = backgroundColor
+        self.isSelected = isSelected
+    }
+    
+    func getChips() -> UILabel {
+        let chips = {
+            let chips = UILabel()
+            chips.text = chipsText
+            chips.textColor = fontColor
+            chips.backgroundColor = backgroundColor
+            chips.font = fontStyle
+            chips.isUserInteractionEnabled = true
+            chips.layer.cornerRadius = 12
+            chips.textAlignment = .center
+            chips.translatesAutoresizingMaskIntoConstraints = false
+            return chips
+        } ()
+        return chips
+    }
+    
+}
+
+
