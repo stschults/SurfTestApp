@@ -23,6 +23,15 @@ class ViewController: UIViewController {
     let sendButton = Button(buttonText: "Отправить заявку", buttonHeight: 60, buttonWidth: 219, buttonColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), bittonTintColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 100), cornerRadius: 60/2).getButton()
     
     let chipsIOS = Chips(chipsText: "IOS", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsAndriod = Chips(chipsText: "Android", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsFlutter = Chips(chipsText: "Flutter", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsJava = Chips(chipsText: "Java", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsQA = Chips(chipsText: "QA", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsPM = Chips(chipsText: "PM", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsGolang = Chips(chipsText: "Golang", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsPython = Chips(chipsText: "Python", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsDesign = Chips(chipsText: "Design", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
+    let chipsRuby = Chips(chipsText: "Ruby", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
     
     private var chipsCollectionView = ChipsCollectionView()
     
@@ -35,6 +44,15 @@ class ViewController: UIViewController {
     func configureUI() {
         view.backgroundColor = .systemBackground
         chipsArray.append(chipsIOS)
+        chipsArray.append(chipsAndriod)
+        chipsArray.append(chipsFlutter)
+        chipsArray.append(chipsJava)
+        chipsArray.append(chipsPM)
+        chipsArray.append(chipsQA)
+        chipsArray.append(chipsPython)
+        chipsArray.append(chipsGolang)
+        chipsArray.append(chipsRuby)
+        chipsArray.append(chipsDesign)
         chipsCollectionView.set(cells: chipsArray)
         view.addSubview(topImage)
         view.addSubview(bottomView)
@@ -71,8 +89,8 @@ class ViewController: UIViewController {
                 
                 chipsCollectionView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 140),
                 chipsCollectionView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 20),
+                chipsCollectionView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20),
                 chipsCollectionView.heightAnchor.constraint(equalToConstant: 44),
-                chipsCollectionView.widthAnchor.constraint(equalToConstant: 480),
                 
                 sendButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -58),
                 sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
