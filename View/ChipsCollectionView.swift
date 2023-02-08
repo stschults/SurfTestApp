@@ -15,12 +15,15 @@ class ChipsCollectionView: UICollectionView, UICollectionViewDelegate, UICollect
     init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 12
         super.init(frame: .zero, collectionViewLayout: layout)
         backgroundColor = .white
         delegate = self
         dataSource = self
         register(ChipsCollectionViewCell.self, forCellWithReuseIdentifier: ChipsCollectionViewCell.reuseID)
         translatesAutoresizingMaskIntoConstraints = false
+        showsVerticalScrollIndicator = false
+        showsHorizontalScrollIndicator = false
     }
     
     required init?(coder: NSCoder) {
@@ -37,12 +40,15 @@ class ChipsCollectionView: UICollectionView, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: ChipsCollectionViewCell.reuseID, for: indexPath) as! ChipsCollectionViewCell
-        cell.chips = cells[indexPath.item]
+        cell.chips.text = cells[indexPath.item].text
+        cell.chips.backgroundColor = cells[indexPath.item].backgroundColor
+        cell.chips.textColor = cells[indexPath.item].textColor
+        cell.chips.layer.cornerRadius = cells[indexPath.item].layer.cornerRadius
         return cell
     }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        CGSize(width: 100, height: 100)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 50, height: 40)
+    }
 
 }
