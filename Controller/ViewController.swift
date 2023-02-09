@@ -97,6 +97,7 @@ class ViewController: UIViewController {
         view.addSubview(questionLabel)
         view.addSubview(sendButton)
         setConstraints()
+        sendButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
     }
     
     func setConstraints() {
@@ -152,6 +153,12 @@ class ViewController: UIViewController {
                 ]
             )
         }
+    }
+    
+    @objc func addButtonPressed() {
+        let alertView = UIAlertController(title: "Поздравляем!", message: "Ваша заявка успешно отправлена!", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "Закрыть", style: .default))
+        self.present(alertView, animated: true)
     }
 
 }
