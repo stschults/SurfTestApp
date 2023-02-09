@@ -86,12 +86,12 @@ class Button {
     let cornerRadius: CGFloat
     
     
-    init(buttonText: String, buttonHeight: Int, buttonWidth: Int, buttonColor: UIColor, bittonTintColor: UIColor, cornerRadius: CGFloat) {
+    init(buttonText: String, buttonHeight: Int, buttonWidth: Int, buttonColor: UIColor, buttonTintColor: UIColor, cornerRadius: CGFloat) {
         self.buttonText = buttonText
         self.buttonHeight = buttonHeight
         self.buttonWidth = buttonWidth
         self.buttonColor = buttonColor
-        self.buttonTintColor = bittonTintColor
+        self.buttonTintColor = buttonTintColor
         self.cornerRadius = cornerRadius
     }
     
@@ -128,14 +128,15 @@ class Chips {
     
     func getChips() -> UILabel {
         let chips = {
-            let chips = UILabel()
+            let chips = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 44))
             chips.text = chipsText
             chips.textColor = fontColor
+            chips.textAlignment = .center
             chips.backgroundColor = backgroundColor
-            chips.font = fontStyle
+            chips.font = chips.font.withSize(14)
             chips.isUserInteractionEnabled = true
             chips.layer.cornerRadius = 12
-            chips.textAlignment = .center
+            chips.layer.masksToBounds = true
             chips.translatesAutoresizingMaskIntoConstraints = false
             return chips
         } ()
@@ -143,5 +144,7 @@ class Chips {
     }
     
 }
+
+
 
 

@@ -47,8 +47,8 @@ class ChipsCollectionView: UICollectionView, UICollectionViewDelegate, UICollect
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 50, height: 40)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        CGSize(width: 60, height: 44 )
+//    }
 
 }

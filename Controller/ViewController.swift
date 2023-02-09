@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     let questionLabel = Label(labelText: "Хочешь к нам?", fontColor: UIColor(red: 150/255, green: 149/255, blue: 155/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), numberOfLines: 1).getLabel()
     
-    let sendButton = Button(buttonText: "Отправить заявку", buttonHeight: 60, buttonWidth: 219, buttonColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), bittonTintColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 100), cornerRadius: 60/2).getButton()
+    let sendButton = Button(buttonText: "Отправить заявку", buttonHeight: 60, buttonWidth: 219, buttonColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), buttonTintColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 100), cornerRadius: 60/2).getButton()
     
     let chipsIOS = Chips(chipsText: "IOS", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
     let chipsAndriod = Chips(chipsText: "Android", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
@@ -33,8 +33,37 @@ class ViewController: UIViewController {
     let chipsDesign = Chips(chipsText: "Design", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
     let chipsRuby = Chips(chipsText: "Ruby", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), backgroundColor: UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100), isSelected: false).getChips()
     
-    private var chipsCollectionView = ChipsCollectionView()
+    //private var chipsView = ChipsCollectionView()
+    var chipsView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: 800, height: 44)
+        scrollView.contentSize = CGSize(width: 355, height: 44)
+        scrollView.alwaysBounceHorizontal = true
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    } ()
     
+    var contentView: UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .white
+        contentView.frame.size = CGSize(width: 355, height: 44)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    } ()
+    
+    var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 12
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    
+    } ()
+  
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +82,18 @@ class ViewController: UIViewController {
         chipsArray.append(chipsGolang)
         chipsArray.append(chipsRuby)
         chipsArray.append(chipsDesign)
-        chipsCollectionView.set(cells: chipsArray)
+        
         view.addSubview(topImage)
         view.addSubview(bottomView)
         bottomView.addSubview(topLabel)
         bottomView.addSubview(infoLabel)
-        bottomView.addSubview(chipsCollectionView)
+        bottomView.addSubview(chipsView)
+        chipsView.addSubview(contentView)
+        contentView.addSubview(stackView)
+        for chips in chipsArray {
+            stackView.addArrangedSubview(chips)
+        }
+        print(stackView.arrangedSubviews)
         view.addSubview(questionLabel)
         view.addSubview(sendButton)
         setConstraints()
@@ -87,10 +122,19 @@ class ViewController: UIViewController {
                 questionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -78),
                 questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
                 
-                chipsCollectionView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 140),
-                chipsCollectionView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 20),
-                chipsCollectionView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20),
-                chipsCollectionView.heightAnchor.constraint(equalToConstant: 44),
+                chipsView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 140),
+                chipsView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 20),
+                chipsView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20),
+                chipsView.heightAnchor.constraint(equalToConstant: 44),
+                
+                contentView.topAnchor.constraint(equalTo: chipsView.topAnchor),
+                contentView.leadingAnchor.constraint(equalTo: chipsView.leadingAnchor),
+                contentView.trailingAnchor.constraint(equalTo: chipsView.trailingAnchor),
+                contentView.bottomAnchor.constraint(equalTo: chipsView.bottomAnchor),
+                contentView.widthAnchor.constraint(equalToConstant: 810),
+                
+                stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+                stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
                 
                 sendButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -58),
                 sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -99,6 +143,15 @@ class ViewController: UIViewController {
                 
             ]
         )
+        
+        for view in stackView.arrangedSubviews {
+            NSLayoutConstraint.activate(
+                [
+                    view.widthAnchor.constraint(equalToConstant: view.bounds.width),
+                    view.heightAnchor.constraint(equalToConstant: view.bounds.height)
+                ]
+            )
+        }
     }
 
 }
