@@ -14,6 +14,7 @@ class ChipsCollectionViewCell: UICollectionViewCell {
     var chips = {
         let label = UILabel()
         label.text = "Empty"
+        label.numberOfLines = 1
         label.textColor = .black
         label.backgroundColor = .white
         label.font = UIFont.systemFont(ofSize: 14)
@@ -30,10 +31,12 @@ class ChipsCollectionViewCell: UICollectionViewCell {
 
         NSLayoutConstraint.activate(
             [
-                chips.bottomAnchor.constraint(equalTo: bottomAnchor),
-                chips.leadingAnchor.constraint(equalTo: leadingAnchor),
-                chips.trailingAnchor.constraint(equalTo: trailingAnchor),
-                chips.topAnchor.constraint(equalTo: topAnchor)
+//                chips.bottomAnchor.constraint(equalTo: bottomAnchor),
+//                chips.leadingAnchor.constraint(equalTo: leadingAnchor),
+//                chips.trailingAnchor.constraint(equalTo: trailingAnchor),
+//                chips.topAnchor.constraint(equalTo: topAnchor),
+                chips.heightAnchor.constraint(equalToConstant: frame.height),
+                chips.widthAnchor.constraint(equalToConstant: frame.width)
             ]
         )
 //        chips.layer.borderColor = UIColor.gray.cgColor
