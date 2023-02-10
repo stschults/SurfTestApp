@@ -26,7 +26,6 @@ class ImageView {
     }
 }
 
-
 class BottomView {
     
     let cornerRadius: CGFloat
@@ -85,7 +84,6 @@ class Button {
     let buttonTintColor: UIColor
     let cornerRadius: CGFloat
     
-    
     init(buttonText: String, buttonHeight: Int, buttonWidth: Int, buttonColor: UIColor, buttonTintColor: UIColor, cornerRadius: CGFloat) {
         self.buttonText = buttonText
         self.buttonHeight = buttonHeight
@@ -109,42 +107,3 @@ class Button {
         return button
     }
 }
-
-class Chips {
-    
-    let chipsText: String
-    let fontColor: UIColor
-    let fontStyle: UIFont
-    let backgroundColor: UIColor
-    let isSelected: Bool
-    
-    init(chipsText: String, fontColor: UIColor, fontStyle: UIFont, backgroundColor: UIColor, isSelected: Bool) {
-        self.chipsText = chipsText
-        self.fontColor = fontColor
-        self.fontStyle = fontStyle
-        self.backgroundColor = backgroundColor
-        self.isSelected = isSelected
-    }
-    
-    func getChips() -> UILabel {
-        let chips = {
-            let chips = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 44))
-            chips.text = chipsText
-            chips.textColor = fontColor
-            chips.textAlignment = .center
-            chips.backgroundColor = backgroundColor
-            chips.font = chips.font.withSize(14)
-            chips.isUserInteractionEnabled = true
-            chips.layer.cornerRadius = 12
-            chips.layer.masksToBounds = true
-            chips.translatesAutoresizingMaskIntoConstraints = false
-            return chips
-        } ()
-        return chips
-    }
-    
-}
-
-
-
-

@@ -9,48 +9,46 @@ import UIKit
 
 class ChipsCollectionViewCell: UICollectionViewCell {
 
-    static let reuseID = "ChipsCollectionViewCell"
-
-    var chips = {
+    let chipsLabel: UILabel = {
         let label = UILabel()
-        label.text = "Empty"
-        label.numberOfLines = 1
-        label.textColor = .black
-        label.backgroundColor = .white
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.layer.cornerRadius = 12
-        label.isUserInteractionEnabled = true
         label.textAlignment = .center
+        label.textColor = UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100)
+        label.font = .systemFont(ofSize: 14, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    override var isSelected: Bool {
+        didSet {
+            backgroundColor = self.isSelected ? UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100) : UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100)
+            chipsLabel.textColor  = self.isSelected ? UIColor(red: 1, green: 1, blue: 1, alpha: 100) : UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100)
+        }
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(chips)
-
-        NSLayoutConstraint.activate(
-            [
-//                chips.bottomAnchor.constraint(equalTo: bottomAnchor),
-//                chips.leadingAnchor.constraint(equalTo: leadingAnchor),
-//                chips.trailingAnchor.constraint(equalTo: trailingAnchor),
-//                chips.topAnchor.constraint(equalTo: topAnchor),
-                chips.heightAnchor.constraint(equalToConstant: frame.height),
-                chips.widthAnchor.constraint(equalToConstant: frame.width)
-            ]
-        )
-//        chips.layer.borderColor = UIColor.gray.cgColor
-//        chips.layer.borderWidth = 1
-        chips.layer.cornerRadius = 12
-
+        setupViews()
+        setConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func setChips(chips: UILabel) {
-        self.chips = chips
+    
+    private func setupViews() {
+        backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100)
+        layer.cornerRadius = 12
+        addSubview(chipsLabel)
+    }
+    
+    private func setConstraints() {
+        NSLayoutConstraint.activate(
+            [
+                chipsLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+                chipsLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ]
+        )
     }
     
 }
