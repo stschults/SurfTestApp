@@ -8,23 +8,34 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var internSpecialities = ["IOS", "Android", "Flutter", "Design", "PM", "QA", "Java", "Python", "Ruby", "Golang"]
     
-    let topImage = ImageView(imageName: "picture").getImage()
-    let bottomView = BottomView(cornerRadius: 32).getBottomView()
+    private var internSpecialities = [""]
     
-    let topLabel = Label(labelText: "Стажировка в Surf", fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), fontStyle: UIFont.boldSystemFont(ofSize: 24), numberOfLines: 1).getLabel()
+    private let topImage = ImageView(imageName: "picture").getImage()
+    private let bottomView = BottomView(cornerRadius: 32).getBottomView()
     
-    let infoLabel = Label(
+    private let topLabel = Label(labelText: "Стажировка в Surf",
+                                 fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100),
+                                 fontStyle: UIFont.boldSystemFont(ofSize: 24),
+                                 numberOfLines: 1).getLabel()
+    
+    private let infoLabel = Label(
         labelText: "Работай над реальными задачами под руководством опытного наставника и получи возможность стать частью команды мечты.",
         fontColor: UIColor(red: 150/255, green: 149/255, blue: 155/255, alpha: 100),
         fontStyle: UIFont.systemFont(ofSize: 14),
         numberOfLines: 0).getLabel()
     
-    private let questionLabel = Label(labelText: "Хочешь к нам?", fontColor: UIColor(red: 150/255, green: 149/255, blue: 155/255, alpha: 100), fontStyle: UIFont.systemFont(ofSize: 14), numberOfLines: 1).getLabel()
+    private let questionLabel = Label(labelText: "Хочешь к нам?",
+                                      fontColor: UIColor(red: 150/255, green: 149/255, blue: 155/255, alpha: 100),
+                                      fontStyle: UIFont.systemFont(ofSize: 14),
+                                      numberOfLines: 1).getLabel()
     
-    private let sendButton = Button(buttonText: "Отправить заявку", buttonHeight: 60, buttonWidth: 219, buttonColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100), buttonTintColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 100), cornerRadius: 60/2).getButton()
+    private let sendButton = Button(buttonText: "Отправить заявку",
+                                    buttonHeight: 60,
+                                    buttonWidth: 219,
+                                    buttonColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100),
+                                    buttonTintColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 100),
+                                    cornerRadius: 60/2).getButton()
     
     
     private var chipsView = ChipsCollectionView()
@@ -34,8 +45,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-
+    
     func configureUI() {
+        self.internSpecialities = Constants.internSpecialities
         chipsView.setChipsLabelTextArray(textOfChipsArray: internSpecialities)
         view.backgroundColor = .systemBackground
         view.addSubview(topImage)
@@ -86,10 +98,13 @@ class ViewController: UIViewController {
     }
     
     @objc func addButtonPressed() {
-        let alertView = UIAlertController(title: "Поздравляем!", message: "Ваша заявка успешно отправлена!", preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "Закрыть", style: .default))
+        let alertView = UIAlertController(title: "Поздравляем!",
+                                          message: "Ваша заявка успешно отправлена!",
+                                          preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "Закрыть",
+                                          style: .default))
         self.present(alertView, animated: true)
     }
-
+    
 }
 

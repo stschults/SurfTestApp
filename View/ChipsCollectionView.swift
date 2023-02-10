@@ -10,9 +10,7 @@ import UIKit
 class ChipsCollectionView: UICollectionView {
     
     private let chipsColectionLayout = UICollectionViewFlowLayout()
-    
-    private var chipsNames = [""]
-
+    private var chipsNames = [String]()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: chipsColectionLayout)
@@ -24,7 +22,7 @@ class ChipsCollectionView: UICollectionView {
     }
     
     private func configure() {
-        chipsColectionLayout.minimumLineSpacing = 12
+        chipsColectionLayout.minimumLineSpacing = Constants.chipsMinimumLineSpacing
         chipsColectionLayout.scrollDirection = .horizontal
         backgroundColor = .none
         translatesAutoresizingMaskIntoConstraints = false
@@ -54,25 +52,22 @@ extension  ChipsCollectionView: UICollectionViewDataSource {
         cell.chipsLabel.text = chipsNames[indexPath.item]
         return cell
     }
-    
 }
 
 extension ChipsCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath, "selected")
         collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
-    
 }
 
 extension ChipsCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let chipsFont = UIFont.systemFont(ofSize: 14, weight: .regular)
+        let chipsFont = UIFont.systemFont(ofSize: Constants.chipsFontSize, weight: .regular)
         let chipsAttributes = [NSAttributedString.Key.font : chipsFont as Any]
         let chipsWidth = chipsNames[indexPath.item].size(withAttributes: chipsAttributes).width + 24
         return CGSize(width: chipsWidth,
-               height: collectionView.frame.height)
+                      height: collectionView.frame.height)
     }
 }
 
