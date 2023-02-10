@@ -10,7 +10,6 @@ import UIKit
 class ImageView {
     
     let imageName: String
-    
     init(imageName: String) {
         self.imageName = imageName
     }
@@ -29,7 +28,6 @@ class ImageView {
 class BottomView {
     
     let cornerRadius: CGFloat
-    
     init(cornerRadius: CGFloat) {
         self.cornerRadius = cornerRadius
     }
@@ -48,12 +46,10 @@ class BottomView {
 }
 
 class Label {
-    
     let labelText: String
     let fontColor: UIColor
     let fontStyle: UIFont
     let numberOfLines: Int
-    
     init(labelText: String, fontColor: UIColor, fontStyle: UIFont, numberOfLines: Int) {
         self.labelText = labelText
         self.fontColor = fontColor
@@ -74,7 +70,7 @@ class Label {
         return label
     }
 }
-    
+
 class Button {
     
     let buttonText: String
@@ -83,7 +79,6 @@ class Button {
     let buttonColor: UIColor
     let buttonTintColor: UIColor
     let cornerRadius: CGFloat
-    
     init(buttonText: String, buttonHeight: Int, buttonWidth: Int, buttonColor: UIColor, buttonTintColor: UIColor, cornerRadius: CGFloat) {
         self.buttonText = buttonText
         self.buttonHeight = buttonHeight
@@ -99,7 +94,7 @@ class Button {
             button.backgroundColor = buttonColor
             button.tintColor = buttonTintColor
             button.setTitle(buttonText, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 16)
+            button.titleLabel?.font = .systemFont(ofSize: Constants.buttonFontSize)
             button.layer.cornerRadius = cornerRadius
             button.translatesAutoresizingMaskIntoConstraints = false
             return button

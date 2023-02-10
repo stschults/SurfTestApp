@@ -8,20 +8,20 @@
 import UIKit
 
 class ChipsCollectionViewCell: UICollectionViewCell {
-
+    
     let chipsLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100)
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = Constants.deselectedChipsFontColor
+        label.font = .systemFont(ofSize: Constants.chipsCornerRadius, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
+    } ()
     
     override var isSelected: Bool {
         didSet {
-            backgroundColor = self.isSelected ? UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100) : UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100)
-            chipsLabel.textColor  = self.isSelected ? UIColor(red: 1, green: 1, blue: 1, alpha: 100) : UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100)
+            backgroundColor = self.isSelected ? Constants.selectedChipsBackgroundColor : Constants.deselectedChipsBackgroundColor
+            chipsLabel.textColor  = self.isSelected ? Constants.selectedChipsFontColor : Constants.deselectedChipsFontColor
         }
     }
     
@@ -37,8 +37,8 @@ class ChipsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 100)
-        layer.cornerRadius = 12
+        backgroundColor = Constants.deselectedChipsBackgroundColor
+        layer.cornerRadius = Constants.chipsCornerRadius
         addSubview(chipsLabel)
     }
     
