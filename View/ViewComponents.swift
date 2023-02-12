@@ -46,24 +46,18 @@ class BottomView {
 }
 
 class Label {
-    let labelText: String
-    let fontColor: UIColor
-    let fontStyle: UIFont
-    let numberOfLines: Int
-    init(labelText: String, fontColor: UIColor, fontStyle: UIFont, numberOfLines: Int) {
-        self.labelText = labelText
-        self.fontColor = fontColor
-        self.fontStyle = fontStyle
-        self.numberOfLines = numberOfLines
+    let labelContent: CustomLabel
+    init(labelContent: CustomLabel) {
+        self.labelContent = labelContent
     }
     
     func getLabel() -> UILabel {
         let label = {
             let label = UILabel()
-            label.text = labelText
-            label.textColor = fontColor
-            label.font = fontStyle
-            label.numberOfLines = numberOfLines
+            label.text = labelContent.labelText
+            label.textColor = labelContent.fontColor
+            label.font = labelContent.fontStyle
+            label.numberOfLines = labelContent.numberOfLines
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         } ()
@@ -73,29 +67,19 @@ class Label {
 
 class Button {
     
-    let buttonText: String
-    let buttonHeight: Int
-    let buttonWidth: Int
-    let buttonColor: UIColor
-    let buttonTintColor: UIColor
-    let cornerRadius: CGFloat
-    init(buttonText: String, buttonHeight: Int, buttonWidth: Int, buttonColor: UIColor, buttonTintColor: UIColor, cornerRadius: CGFloat) {
-        self.buttonText = buttonText
-        self.buttonHeight = buttonHeight
-        self.buttonWidth = buttonWidth
-        self.buttonColor = buttonColor
-        self.buttonTintColor = buttonTintColor
-        self.cornerRadius = cornerRadius
+    let buttonContent: CustomButton
+    init(buttonContent: CustomButton) {
+        self.buttonContent = buttonContent
     }
     
     func getButton() -> UIButton {
         let button = {
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight))
-            button.backgroundColor = buttonColor
-            button.tintColor = buttonTintColor
-            button.setTitle(buttonText, for: .normal)
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: buttonContent.buttonWidth, height: buttonContent.buttonHeight))
+            button.backgroundColor = buttonContent.buttonColor
+            button.tintColor = buttonContent.buttonTintColor
+            button.setTitle(buttonContent.buttonText, for: .normal)
             button.titleLabel?.font = .systemFont(ofSize: Constants.buttonFontSize)
-            button.layer.cornerRadius = cornerRadius
+            button.layer.cornerRadius = buttonContent.cornerRadius
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()

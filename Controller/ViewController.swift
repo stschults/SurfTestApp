@@ -9,33 +9,32 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var internSpecialities = [""]
+    private var internSpecialities = [String]()
     
-    private let topImage = ImageView(imageName: "picture").getImage()
-    private let bottomView = BottomView(cornerRadius: 32).getBottomView()
+    private let topImage = ImageView(imageName: Constants.topImage).getImage()
+    private let bottomView = BottomView(cornerRadius: Constants.bottomViewCornerRadius).getBottomView()
     
-    private let topLabel = Label(labelText: "Стажировка в Surf",
-                                 fontColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100),
-                                 fontStyle: UIFont.boldSystemFont(ofSize: 24),
-                                 numberOfLines: 1).getLabel()
+    private let topLabel = Label(labelContent: CustomLabel(labelText: Constants.headLineText,
+                                                           fontColor: Constants.headlinrTextColor,
+                                                           fontStyle: Constants.headlineFontStyle,
+                                                           numberOfLines: Constants.headlineNumberOfLines)).getLabel()
     
-    private let infoLabel = Label(
-        labelText: "Работай над реальными задачами под руководством опытного наставника и получи возможность стать частью команды мечты.",
-        fontColor: UIColor(red: 150/255, green: 149/255, blue: 155/255, alpha: 100),
-        fontStyle: UIFont.systemFont(ofSize: 14),
-        numberOfLines: 0).getLabel()
+    private let infoLabel = Label(labelContent: CustomLabel(labelText: Constants.infoText,
+                                                            fontColor: Constants.infoTextColor,
+                                                            fontStyle: Constants.infoTextFontStyle,
+                                                            numberOfLines: Constants.infoNumberOfLines)).getLabel()
     
-    private let questionLabel = Label(labelText: "Хочешь к нам?",
-                                      fontColor: UIColor(red: 150/255, green: 149/255, blue: 155/255, alpha: 100),
-                                      fontStyle: UIFont.systemFont(ofSize: 14),
-                                      numberOfLines: 1).getLabel()
+    private let questionLabel = Label(labelContent: CustomLabel(labelText: Constants.questionLabelText,
+                                                                fontColor: Constants.questionLabelTextColor,
+                                                                fontStyle: Constants.questionLabelFontStyle,
+                                                                numberOfLines: Constants.questionLabelNumberOfLines)).getLabel()
     
-    private let sendButton = Button(buttonText: "Отправить заявку",
-                                    buttonHeight: 60,
-                                    buttonWidth: 219,
-                                    buttonColor: UIColor(red: 49/255, green: 49/255, blue: 49/255, alpha: 100),
-                                    buttonTintColor: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 100),
-                                    cornerRadius: 60/2).getButton()
+    private let sendButton = Button(buttonContent: CustomButton(buttonText: Constants.buttonText,
+                                                                buttonHeight: Constants.buttonHeight,
+                                                                buttonWidth: Constants.buttonWidth,
+                                                                buttonColor: Constants.buttonColor,
+                                                                buttonTintColor: Constants.buttonTintColor,
+                                                                cornerRadius: Constants.buttonCornerRadius)).getButton()
     
     
     private var chipsView = ChipsCollectionView()
