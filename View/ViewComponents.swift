@@ -13,7 +13,6 @@ class ImageView {
     init(imageName: String) {
         self.imageName = imageName
     }
-    
     func getImage() -> UIImageView {
         let imageView = {
             let image = UIImageView()

@@ -56,7 +56,11 @@ extension  ChipsCollectionView: UICollectionViewDataSource {
 
 extension ChipsCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        if indexPath.item <= 5 {
+            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        } else {
+            collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+        }
     }
 }
 
